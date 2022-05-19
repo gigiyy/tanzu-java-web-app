@@ -10,6 +10,9 @@ spec:
   - name: annotations
     value:
       autoscaling.knative.dev/minScale: "1"
+  env:
+    - name: SPRING_PROFILES_ACTIVE
+      value: postgres
   serviceClaims:
     - name: db
       ref:
