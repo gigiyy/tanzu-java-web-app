@@ -1,3 +1,15 @@
+# create class claims for postgresql database
+
+- use `tanzu service class list` to find proper name for class name and its details about parameters
+- create class claims using the class:
+```
+tanzu servcie class-claim create postgresql-db-1 --class postgresql-unmanaged --parameter storageGB=5
+```
+- use the class claim info in `workload.yaml` or using `tanzu cli` to create the workload
+```
+tanzu apps workload create tanzu-java-web-app --git-repo https://github.com/gigiyy/tanzu-java-web-app.git --git-branch main --type web --label app.kubernetes.io/part-of=tanzu-java-app --annotation autoscaling.knative.dev/minScale=1 --service-ref="db=services.apps.tanzu.vmware.com/v1alpha1:ClassClaim:postgresql-db-1"
+```
+
 # tanzu-java-web-app
 
 This is a sample of a Java Spring app that works with Tilt and the Tanzu Application Platform.

@@ -13,9 +13,9 @@ spec:
   serviceClaims:
     - name: db
       ref:
-        apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-        kind: ClassClaim
-        name: postgresql-db-1
+        apiVersion: sql.tanzu.vmware.com/v1
+        kind: Postgres
+        name: java-app-db
   source:
     git:
       url: https://github.com/gigiyy/tanzu-java-web-app.git
